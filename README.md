@@ -1,4 +1,4 @@
-# Git Cerdentials GitHub Action test repo
+# Git Credentials GitHub Action test repo
 
 Purpose: Test [gha-git-credentials](https://github.com/OleksiyRudenko/gha-git-credentials)
 
@@ -13,3 +13,10 @@ Quick and dirty yet allows to test if the action is basically working as expecte
 
 3. Success if there is a commit on `master` authored by GitHub (github-action\@users.noreply.github.com)
 and file `target.md` is identical to `source.md`
+
+## Notes
+
+By default [.github/workflows/replicate.yml](./.github/workflows/replicate.yml)
+uses `gha-git-credentials` tagged as `@latest`.
+Feel free replacing with a specific [version](https://github.com/OleksiyRudenko/gha-git-credentials/releases)
+or branch name (`master` or a feature branch).
