@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit update
         run: |
-          git commit -m "Update target.md jn `date +\"%Y-%m-%d %H:%M:%S\"`" -a
+          git commit -a -m "Update target.md jn `date +\"%Y-%m-%d %H:%M:%S\"`"
       - name: Publish changes
         run: |
           git push
