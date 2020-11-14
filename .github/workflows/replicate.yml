@@ -1,0 +1,28 @@
+name: Replicate source.md as target.md on source.md update on master
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'source.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull source code
+        uses: actions/checkout@v2
+        with:
+          path: './'
+      - name: Replicate
+        run: cp source.md target.md
+      - name: Setup git creds
+        uses: oleksiyrudenko/gha-git-credentials@latest
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit update
+        run: |
+          git commit -m "Update target.md jn `date +\"%Y-%m-%d %H:%M:%S\"`" -a
+      - name: Publish changes
+        run: |
+          git push
