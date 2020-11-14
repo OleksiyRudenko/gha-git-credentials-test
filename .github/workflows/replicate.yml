@@ -23,7 +23,7 @@ jobs:
       - name: Commit update
         run: |
           git add .
-          git commit -m "Update target.md jn `date +\"%Y-%m-%d %H:%M:%S\"`"
+          git commit -m "Update target.md on `date +\"%Y-%m-%d %H:%M:%S\"`"
       - name: Publish changes
         run: |
           git push
