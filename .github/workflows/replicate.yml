@@ -26,15 +26,17 @@ jobs:
           echo "=== Git config global"
           git --version
           git config -l
+          git config --global -l || echo "No global git config"
+          cat /home/runner/work/_actions/oleksiyrudenko/gha-git-credentials/feat-global-option/dist/action.sh
       - name: Log git config (local only expected)
         run: |
           echo "=== Git config all" > git-config-local-expected.txt
-          git config --get-regexp user
-          # >> git-config-local-expected.txt
+          git config --get-regexp 'user.(name|email)' >> git-config-local-expected.txt
           echo "=== Git config local" >> git-config-local-expected.txt
-          # git config --local --get-regexp user >> git-config-local-expected.txt
+          git config --local --get-regexp 'user.(name|email)' >> git-config-local-expected.txt
           echo "=== Git config global" >> git-config-local-expected.txt
-          # git config --global --get-regexp user >> git-config-local-expected.txt
+          git config --global --get-regexp 'user.(name|email)' >> git-config-local-expected.txt ||
+          echo "No global git config" >> git-config-local-expected.txt
       - name: Commit update
         run: |
           git add .
@@ -48,20 +50,22 @@ jobs:
         uses: oleksiyrudenko/gha-git-credentials@feat-global-option
         with:
           global: true
-          name: "Oleksiy Rudenko"
+          name: "Global User"
+          email: "global.user@global"
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Log git config (global only expected)
         run: |
-          echo "=== Git config global" > git-config-global-expected.txt
-          git config --global --get-regexp user >> git-config-global-expected.txt
+          echo "=== Git config all" > git-config-global-expected.txt
+          git config --get-regexp 'user.(name|email)' >> git-config-global-expected.txt
           echo "=== Git config local" >> git-config-global-expected.txt
-          git config --local --get-regexp user >> git-config-global-expected.txt
-          echo "=== Git config all" >> git-config-global-expected.txt
-          git config --get-regexp user >> git-config-global-expected.txt
+          git config --local --get-regexp 'user.(name|email)' >> git-config-global-expected.txt
+          echo "=== Git config global" >> git-config-global-expected.txt
+          git config --global --get-regexp 'user.(name|email)' >> git-config-global-expected.txt ||
+          echo "No global git config" >> git-config-global-expected.txt
       - name: Commit update
         run: |
           git add .
-          git commit -m "Update files while local git user configured on `date +\"%Y-%m-%d %H:%M:%S\"`"
+          git commit -m "Update files while global git user configured on `date +\"%Y-%m-%d %H:%M:%S\"`"
       - name: Publish changes
         run: |
           git push
