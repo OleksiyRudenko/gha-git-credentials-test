@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Log git config (local only expected)
         run: |
-          echo "=== Git config global" >> git-config-local-expected.txt
+          echo "=== Git config global" > git-config-local-expected.txt
           git config --global --get-regexp user >> git-config-local-expected.txt
           echo "=== Git config local" >> git-config-local-expected.txt
           git config --local --get-regexp user >> git-config-local-expected.txt
@@ -46,7 +46,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Log git config (global only expected)
         run: |
-          echo "=== Git config global" >> git-config-global-expected.txt
+          echo "=== Git config global" > git-config-global-expected.txt
           git config --global --get-regexp user >> git-config-global-expected.txt
           echo "=== Git config local" >> git-config-global-expected.txt
           git config --local --get-regexp user >> git-config-global-expected.txt
