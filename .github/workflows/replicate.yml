@@ -21,10 +21,18 @@ jobs:
         uses: oleksiyrudenko/gha-git-credentials@feat-global-option
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log git config (local only expected)
+        run: |
+          echo "=== Git config global" >> git-config-local-expected.txt
+          git config --global --get-regexp user >> git-config-local-expected.txt
+          echo "=== Git config local" >> git-config-local-expected.txt
+          git config --local --get-regexp user >> git-config-local-expected.txt
+          echo "=== Git config all" >> git-config-local-expected.txt
+          git config --get-regexp user >> git-config-local-expected.txt
       - name: Commit update
         run: |
           git add .
-          git commit -m "Update target-local-git-user.md (local git user) on `date +\"%Y-%m-%d %H:%M:%S\"`"
+          git commit -m "Update files while local git user configured on `date +\"%Y-%m-%d %H:%M:%S\"`"
       - name: Publish changes
         run: |
           git push
@@ -36,10 +44,18 @@ jobs:
           global: true
           name: "Oleksiy Rudenko"
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log git config (global only expected)
+        run: |
+          echo "=== Git config global" >> git-config-global-expected.txt
+          git config --global --get-regexp user >> git-config-global-expected.txt
+          echo "=== Git config local" >> git-config-global-expected.txt
+          git config --local --get-regexp user >> git-config-global-expected.txt
+          echo "=== Git config all" >> git-config-global-expected.txt
+          git config --get-regexp user >> git-config-global-expected.txt
       - name: Commit update
         run: |
           git add .
-          git commit -m "Update target-global-git-user.md (global git user) on `date +\"%Y-%m-%d %H:%M:%S\"`"
+          git commit -m "Update files while local git user configured on `date +\"%Y-%m-%d %H:%M:%S\"`"
       - name: Publish changes
         run: |
           git push
