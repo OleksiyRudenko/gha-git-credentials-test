@@ -1,0 +1,3 @@
+=== Git config all
+=== Git config local
+=== Git config global
