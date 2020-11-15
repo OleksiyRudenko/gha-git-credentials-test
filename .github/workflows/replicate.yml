@@ -2,7 +2,7 @@ name: Replicate source.md as target.md on source.md update on master
 on:
   push:
     branches:
-      - master
+      - test--v2latest
     paths:
       - 'source.md'
 
@@ -17,9 +17,13 @@ jobs:
       - name: Replicate
         run: cp source.md target.md
       - name: Setup git creds
-        uses: oleksiyrudenko/gha-git-credentials@latest
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log action
+        run: |
+          echo "=== Action"
+          cat /home/runner/work/_actions/oleksiyrudenko/gha-git-credentials/feat-global-option/dist/action.sh
       - name: Commit update
         run: |
           git add .
