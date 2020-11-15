@@ -2,7 +2,7 @@ name: Replicate source.md as target.md on source.md update on master
 on:
   push:
     branches:
-      - master
+      - test--feat-global-option
     paths:
       - 'source.md'
 
@@ -13,17 +13,33 @@ jobs:
       - name: Pull source code
         uses: actions/checkout@v2
         with:
+          ref: 'test--feat-global-option'
           path: './'
-      - name: Replicate
-        run: cp source.md target.md
-      - name: Setup git creds
-        uses: oleksiyrudenko/gha-git-credentials@latest
+      - name: Replicate as Local git user
+        run: cp source.md target-local-git-user.md
+      - name: Setup local git creds
+        uses: oleksiyrudenko/gha-git-credentials@feat-global-option
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit update
         run: |
           git add .
-          git commit -m "Update target.md on `date +\"%Y-%m-%d %H:%M:%S\"`"
+          git commit -m "Update target-local-git-user.md (local git user) on `date +\"%Y-%m-%d %H:%M:%S\"`"
+      - name: Publish changes
+        run: |
+          git push
+      - name: Replicate as Global git user
+        run: cp source.md target-global-git-user.md
+      - name: Setup global git creds
+        uses: oleksiyrudenko/gha-git-credentials@feat-global-option
+        with:
+          global: true
+          name: "Oleksiy Rudenko"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit update
+        run: |
+          git add .
+          git commit -m "Update target-global-git-user.md (global git user) on `date +\"%Y-%m-%d %H:%M:%S\"`"
       - name: Publish changes
         run: |
           git push

@@ -9,10 +9,16 @@ Quick and dirty yet allows to test if the action is basically working as expecte
 
 1. Change `source.md` (e.g. update the ISO formatted date therein with current date)
 
-2. Commit and push to master
+2. Commit and push to `test--feat-global-option`
 
-3. Success if there is a commit on `master` authored by GitHub (github-action\@users.noreply.github.com)
-and file `target.md` is identical to `source.md`
+3. Success if there are commits on `test--feat-global-option` 
+   authored by **GitHub** (github-action\@users.noreply.github.com)
+   and **Oleksiy Rudenko** (github-action\@users.noreply.github.com)
+   and files `target-local-git-user.md` and `target-global-git-user.md`
+   are identical to `source.md`
+
+Checkout [Actions page](https://github.com/OleksiyRudenko/gha-git-credentials-test/actions)
+whenever things go wrong.
 
 ## Notes
 
