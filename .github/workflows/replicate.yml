@@ -24,11 +24,8 @@ jobs:
       - name: Log git config (local only expected) terminal
         run: |
           echo "=== Git config global"
-          git config --global --get-regexp user
-          echo "=== Git config local"
-          git config --local --get-regexp user
-          echo "=== Git config all"
-          git config --get-regexp user
+          git --version
+          git config -l
       - name: Log git config (local only expected)
         run: |
           echo "=== Git config global" > git-config-local-expected.txt
