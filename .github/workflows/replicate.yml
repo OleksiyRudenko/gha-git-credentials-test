@@ -21,19 +21,19 @@ jobs:
         uses: oleksiyrudenko/gha-git-credentials@feat-global-option
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Log git config (local only expected) terminal
+      - name: Log git version and config
         run: |
           echo "=== Git config global"
           git --version
           git config -l
       - name: Log git config (local only expected)
         run: |
-          echo "=== Git config global" > git-config-local-expected.txt
-          git config --global --get-regexp user >> git-config-local-expected.txt
-          echo "=== Git config local" >> git-config-local-expected.txt
-          git config --local --get-regexp user >> git-config-local-expected.txt
           echo "=== Git config all" >> git-config-local-expected.txt
           git config --get-regexp user >> git-config-local-expected.txt
+          echo "=== Git config local" >> git-config-local-expected.txt
+          git config --local --get-regexp user >> git-config-local-expected.txt
+          echo "=== Git config global" > git-config-local-expected.txt
+          git config --global --get-regexp user >> git-config-local-expected.txt
       - name: Commit update
         run: |
           git add .
