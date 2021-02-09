@@ -1,10 +1,8 @@
 === Git config all
-user.email github-action@users.noreply.github.com
-user.name GitHub
-user.name Oleksiy
+user.email global.user@global
+user.name Global User
 === Git config local
-user.email github-action@users.noreply.github.com
-user.name GitHub
-user.name Oleksiy
+user.email global.user@global
+user.name Global User
 === Git config global
 No global git config
