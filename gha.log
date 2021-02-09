@@ -1,0 +1,2 @@
+INPUTS: global_flag= name=GitHub Action email=github-action@users.noreply.github.com actor=GITHUB_ACTOR
+VALUES: global_flag= name=GitHub Action email=github-action@users.noreply.github.com actor=GITHUB_ACTOR
