@@ -17,7 +17,7 @@ jobs:
       - name: Replicate
         run: cp source.md target.md
       - name: Setup git creds
-        uses: oleksiyrudenko/gha-git-credentials@master
+        uses: oleksiyrudenko/gha-git-credentials@rc
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Log action
