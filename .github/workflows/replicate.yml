@@ -23,7 +23,7 @@ jobs:
       - name: Log action
         run: |
           echo "=== Action"
-          cat /home/runner/work/_actions/oleksiyrudenko/gha-git-credentials/master/dist/action.sh
+          # cat /home/runner/work/_actions/oleksiyrudenko/gha-git-credentials/master/dist/action.sh
       - name: Commit update
         run: |
           git add .
